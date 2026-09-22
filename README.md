@@ -33,4 +33,4 @@ For an installation managed by the skills CLI, use `npx skills update freejev`. 
 
 Installing the skill is free. Product calls follow the site's account, authorization and billing rules. For setup and product support, see [the documentation](https://freejev.org/docs/agents).
 
-Skill source version: 0.2.0. MIT licensed; see [LICENSE](LICENSE).
+Skill source version: 0.3.0. MIT licensed; see [LICENSE](LICENSE).

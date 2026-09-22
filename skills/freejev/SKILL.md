@@ -9,10 +9,11 @@ Use the configured `jev_decide` MCP tool, or the bundled CLI (`freejev --help`).
 
 Before submitting, establish the user's input, judgment question, and allowed answers. Send only the data the user intends to evaluate; avoid secrets and unrelated context. Calls consume credits, so keep the submitted scope bounded and use the existing authorization for that task.
 
-Create a request JSON file:
+Choose and save one stable `request_id` for this intended paid call before sending it; reuse it after a lost response. Missing IDs are rejected. Create a request JSON file:
 
 ```json
 {
+  "request_id": "ticket-evaluation-001",
   "state": "A customer cannot sign in.",
   "questions": {
     "team": {
@@ -29,7 +30,7 @@ Create a request JSON file:
 - `score`: criteria is an ordered array of 2–10 level descriptions. Result is a zero-based probability-weighted score, possibly fractional.
 - Reuse `state` across up to 16 questions per request; total JSON must fit 128 KB. Avoid sending overlapping requests on the same account.
 
-Run `freejev decide --request request.json`, or use exported questions with `freejev decide --config judgment.json --file input.txt`. A pipe can replace `--file`. Output is JSON. `freejev usage` / `freejev_usage` reads remaining credits without model inference.
+Run `freejev decide --request request.json`, or use exported questions with `freejev decide --config judgment.json --file input.txt --request-id ticket-evaluation-001`. A pipe can replace `--file`. Output is JSON. `freejev usage` / `freejev_usage` reads remaining credits without model inference.
 
 Report the returned answer and relevant probabilities, plus usage when useful. A probability is not a correctness guarantee or permission to execute an action. Jev does not produce reasoning; do not invent an explanation attributed to it.
 
